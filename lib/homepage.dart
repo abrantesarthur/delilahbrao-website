@@ -132,37 +132,48 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget mobileView() {
-    return SizedBox(
-      width: screenWidth,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10, top: 10),
-            child: IconButton(
+    return Padding(
+      padding: EdgeInsets.only(
+        top: screenWidth * 0.05,
+        left: screenWidth * 0.05,
+        right: screenWidth * 0.05,
+      ),
+      child: SizedBox(
+        width: screenWidth,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            IconButton(
               icon: const Icon(Icons.menu_rounded),
+              iconSize: screenWidth * 0.08,
               onPressed: () => scaffoldKey.currentState?.openEndDrawer(),
               color: Colors.white,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
 
+  // TODO: edit drawer theme like we did for the CustomTabBar
   Widget drawer() {
     return Drawer(
         child: ListView(
-            children: contentViews
-                .map(
-                  (e) => Container(
-                    child: ListTile(
-                      title: Text(e.tab.title),
-                      onTap: () {},
-                    ),
-                  ),
-                )
-                .toList()));
+            children: [
+                  Container(
+                    height: screenHeight * 0.1,
+                  )
+                ] +
+                contentViews
+                    .map(
+                      (e) => Container(
+                        child: ListTile(
+                          title: Text(e.tab.title),
+                          onTap: () {},
+                        ),
+                      ),
+                    )
+                    .toList()));
   }
 }
