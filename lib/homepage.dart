@@ -43,7 +43,14 @@ class HomePage extends StatelessWidget {
   }
 
   Widget desktopView() {
-    return Column();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        CustomTabBar(),
+        Container(),
+      ],
+    );
   }
 
   Widget mobileView() {
