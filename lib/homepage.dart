@@ -5,6 +5,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints viewPortConstraints) {
+          if (viewPortConstraints.maxWidth > 700) {
+            return desktopView();
+          }
+          return mobileView();
+        },
+      ),
+    );
+  }
+
+  Widget desktopView() {
+    return Column();
+  }
+
+  Widget mobileView() {
+    return Column();
   }
 }

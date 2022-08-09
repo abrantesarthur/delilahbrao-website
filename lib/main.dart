@@ -1,3 +1,4 @@
+import 'package:delilahbrao/homepage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,9 +10,9 @@ class MyWebsite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: "Delilah Brao",
-      home: Container(),
+      home: HomePage(),
     );
   }
 }
