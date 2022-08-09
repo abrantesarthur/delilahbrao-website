@@ -1,4 +1,4 @@
-import 'package:delilahbrao/homeTab.dart';
+import 'package:delilahbrao/home_tab.dart';
 import 'package:delilahbrao/widgets/content_view.dart';
 import 'package:delilahbrao/widgets/custom_tab.dart';
 import 'package:delilahbrao/widgets/custom_tab_bar.dart';
@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage>
   final List<ContentView> contentViews = [
     const ContentView(
       tab: CustomTab(title: 'Home'),
-      content: Center(child: HomeTab()),
+      content: HomeTab(),
     ),
     ContentView(
       tab: const CustomTab(title: 'About'),
