@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  late double screenHeight;
+  late double bottomPadding;
 
   final List<ContentView> contentViews = [
     ContentView(
@@ -46,14 +48,20 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
+    bottomPadding = 0.01 * screenHeight;
     return Scaffold(
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints viewPortConstraints) {
-          if (viewPortConstraints.maxWidth > 700) {
-            return desktopView();
-          }
-          return mobileView();
-        },
+      backgroundColor: Colors.black,
+      body: Padding(
+        padding: EdgeInsets.only(bottom: bottomPadding),
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewPortConstraints) {
+            if (viewPortConstraints.maxWidth > 700) {
+              return desktopView();
+            }
+            return mobileView();
+          },
+        ),
       ),
     );
   }
@@ -63,8 +71,17 @@ class _HomePageState extends State<HomePage>
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        CustomTabBar(controller: tabController, tabs: []),
-        Container(),
+        CustomTabBar(
+          controller: tabController,
+          tabs: contentViews.map((cv) => cv.tab).toList(),
+        ),
+        SizedBox(
+          height: 0.85 * screenHeight, // make view responsive TODO: adjust
+          child: TabBarView(
+            controller: tabController,
+            children: contentViews.map((cv) => cv.content).toList(),
+          ),
+        ),
       ],
     );
   }
