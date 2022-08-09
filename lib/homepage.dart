@@ -1,6 +1,6 @@
-import 'package:delilahbrao/content_view.dart';
-import 'package:delilahbrao/custom_tab.dart';
-import 'package:delilahbrao/custom_tab_bar.dart';
+import 'package:delilahbrao/widgets/content_view.dart';
+import 'package:delilahbrao/widgets/custom_tab.dart';
+import 'package:delilahbrao/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

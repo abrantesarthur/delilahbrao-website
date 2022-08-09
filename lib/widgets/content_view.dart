@@ -1,4 +1,4 @@
-import 'package:delilahbrao/custom_tab.dart';
+import 'package:delilahbrao/widgets/custom_tab.dart';
 import 'package:flutter/material.dart';
 
 class ContentView {
