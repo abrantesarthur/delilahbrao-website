@@ -1,9 +1,18 @@
 import 'package:delilahbrao/content_view.dart';
 import 'package:delilahbrao/custom_tab.dart';
+import 'package:delilahbrao/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
 
   final List<ContentView> contentViews = [
     ContentView(
@@ -29,6 +38,13 @@ class HomePage extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    super.initState();
+
+    tabController = TabController(length: contentViews.length, vsync: this);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBuilder(
@@ -47,7 +63,7 @@ class HomePage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        CustomTabBar(),
+        CustomTabBar(controller: tabController, tabs: []),
         Container(),
       ],
     );
