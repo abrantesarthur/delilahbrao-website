@@ -7,9 +7,10 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 100,
-        height: 100,
-        color: Colors.blue,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
+        ),
       ),
     );
   }
