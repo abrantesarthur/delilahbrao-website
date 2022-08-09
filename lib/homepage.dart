@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  var scaffoldKey = GlobalKey<ScaffoldState>();
   late TabController tabController;
   late double screenHeight;
   late double screenWidth;
@@ -94,6 +95,8 @@ class _HomePageState extends State<HomePage>
     bottomPadding = 0.01 * screenHeight;
     return Scaffold(
       backgroundColor: Colors.black,
+      endDrawer: drawer(),
+      key: scaffoldKey,
       body: Padding(
         padding: EdgeInsets.only(bottom: bottomPadding),
         child: LayoutBuilder(
@@ -133,15 +136,33 @@ class _HomePageState extends State<HomePage>
       width: screenWidth,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          IconButton(
-            icon: const Icon(Icons.menu_rounded),
-            onPressed: () {},
-            color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.only(right: 10, top: 10),
+            child: IconButton(
+              icon: const Icon(Icons.menu_rounded),
+              onPressed: () => scaffoldKey.currentState?.openEndDrawer(),
+              color: Colors.white,
+            ),
           )
         ],
       ),
     );
+  }
+
+  Widget drawer() {
+    return Drawer(
+        child: ListView(
+            children: contentViews
+                .map(
+                  (e) => Container(
+                    child: ListTile(
+                      title: Text(e.tab.title),
+                      onTap: () {},
+                    ),
+                  ),
+                )
+                .toList()));
   }
 }
