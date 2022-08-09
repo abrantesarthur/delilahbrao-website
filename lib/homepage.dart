@@ -1,3 +1,4 @@
+import 'package:delilahbrao/homeTab.dart';
 import 'package:delilahbrao/widgets/content_view.dart';
 import 'package:delilahbrao/widgets/custom_tab.dart';
 import 'package:delilahbrao/widgets/custom_tab_bar.dart';
@@ -19,15 +20,9 @@ class _HomePageState extends State<HomePage>
   late double bottomPadding;
 
   final List<ContentView> contentViews = [
-    ContentView(
-      tab: const CustomTab(title: 'Home'),
-      content: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.blue,
-        ),
-      ),
+    const ContentView(
+      tab: CustomTab(title: 'Home'),
+      content: Center(child: HomeTab()),
     ),
     ContentView(
       tab: const CustomTab(title: 'About'),
