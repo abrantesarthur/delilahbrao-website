@@ -13,16 +13,25 @@ class CustomTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    // make tab bar's width responsive
     double scaling = screenWidth > 1400
         ? 0.21
         : screenWidth > 1100
             ? 0.3
             : 0.4;
-    return SizedBox(
-      width: screenWidth * scaling,
-      child: TabBar(
-        controller: controller,
-        tabs: tabs,
+
+    return Theme(
+      data: ThemeData(
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+      ),
+      child: SizedBox(
+        width: screenWidth * scaling,
+        child: TabBar(
+          controller: controller,
+          tabs: tabs,
+        ),
       ),
     );
   }
