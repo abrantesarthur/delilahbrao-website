@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
   late double screenHeight;
+  late double screenWidth;
   late double bottomPadding;
 
   final List<ContentView> contentViews = [
@@ -89,6 +90,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
+    screenWidth = MediaQuery.of(context).size.width;
     bottomPadding = 0.01 * screenHeight;
     return Scaffold(
       backgroundColor: Colors.black,
@@ -127,6 +129,19 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget mobileView() {
-    return Column();
+    return SizedBox(
+      width: screenWidth,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.menu_rounded),
+            onPressed: () {},
+            color: Colors.white,
+          )
+        ],
+      ),
+    );
   }
 }
