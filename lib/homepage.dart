@@ -36,7 +36,47 @@ class _HomePageState extends State<HomePage>
           color: Colors.red,
         ),
       ),
-    )
+    ),
+    ContentView(
+      tab: const CustomTab(title: 'Listen'),
+      content: Center(
+        child: Container(
+          width: 100,
+          height: 100,
+          color: Colors.green,
+        ),
+      ),
+    ),
+    ContentView(
+      tab: const CustomTab(title: 'Follow'),
+      content: Center(
+        child: Container(
+          width: 100,
+          height: 100,
+          color: Colors.green,
+        ),
+      ),
+    ),
+    ContentView(
+      tab: const CustomTab(title: 'Newsletter'),
+      content: Center(
+        child: Container(
+          width: 100,
+          height: 100,
+          color: Colors.green,
+        ),
+      ),
+    ),
+    ContentView(
+      tab: const CustomTab(title: 'Contact'),
+      content: Center(
+        child: Container(
+          width: 100,
+          height: 100,
+          color: Colors.green,
+        ),
+      ),
+    ),
   ];
 
   @override
@@ -69,7 +109,7 @@ class _HomePageState extends State<HomePage>
   Widget desktopView() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomTabBar(
           controller: tabController,
