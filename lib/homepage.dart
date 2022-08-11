@@ -107,6 +107,15 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget desktopView() {
+    double scaling = screenHeight > 800
+        ? 1
+        : screenHeight > 550
+            ? 0.9
+            : screenHeight > 400
+                ? 0.87
+                : screenHeight > 330
+                    ? 0.84
+                    : 0.8;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -116,7 +125,7 @@ class _HomePageState extends State<HomePage>
           tabs: contentViews.map((cv) => cv.tab).toList(),
         ),
         SizedBox(
-          height: 0.85 * screenHeight, // make view responsive TODO: adjust
+          height: scaling * screenHeight,
           child: TabBarView(
             controller: tabController,
             children: contentViews.map((cv) => cv.content).toList(),
