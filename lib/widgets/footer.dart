@@ -16,18 +16,9 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.only(
-        top: 10,
-        bottom: 30,
-        right: screenWidth / 8,
-        left: screenWidth / 8,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: getIcons(),
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: getIcons(),
     );
   }
 

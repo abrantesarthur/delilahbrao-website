@@ -6,6 +6,7 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Center(
       child: Container(
         decoration: const BoxDecoration(
@@ -18,7 +19,15 @@ class HomeTab extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(),
-            const Footer(),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+                bottom: 30,
+                right: screenWidth / 8,
+                left: screenWidth / 8,
+              ),
+              child: const Footer(),
+            ),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:delilahbrao/about_tab.dart';
 import 'package:delilahbrao/home_tab.dart';
 import 'package:delilahbrao/widgets/content_view.dart';
 import 'package:delilahbrao/widgets/custom_tab.dart';
@@ -24,15 +25,9 @@ class _HomePageState extends State<HomePage>
       tab: CustomTab(title: 'Home'),
       content: HomeTab(),
     ),
-    ContentView(
-      tab: const CustomTab(title: 'About'),
-      content: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.red,
-        ),
-      ),
+    const ContentView(
+      tab: CustomTab(title: 'About'),
+      content: AboutTab(),
     ),
     ContentView(
       tab: const CustomTab(title: 'Listen'),
