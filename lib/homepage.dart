@@ -1,8 +1,3 @@
-import 'package:delilahbrao/about_tab.dart';
-import 'package:delilahbrao/home_tab.dart';
-import 'package:delilahbrao/widgets/content_view.dart';
-import 'package:delilahbrao/widgets/custom_tab.dart';
-import 'package:delilahbrao/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,63 +15,7 @@ class _HomePageState extends State<HomePage>
   late double screenWidth;
   late double bottomPadding;
 
-  final List<ContentView> contentViews = [
-    const ContentView(
-      tab: CustomTab(title: 'Home'),
-      content: HomeTab(),
-    ),
-    const ContentView(
-      tab: CustomTab(title: 'About'),
-      content: AboutTab(),
-    ),
-    ContentView(
-      tab: const CustomTab(title: 'Listen'),
-      content: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.green,
-        ),
-      ),
-    ),
-    ContentView(
-      tab: const CustomTab(title: 'Follow'),
-      content: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.green,
-        ),
-      ),
-    ),
-    ContentView(
-      tab: const CustomTab(title: 'Newsletter'),
-      content: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.green,
-        ),
-      ),
-    ),
-    ContentView(
-      tab: const CustomTab(title: 'Contact'),
-      content: Center(
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.green,
-        ),
-      ),
-    ),
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-
-    tabController = TabController(length: contentViews.length, vsync: this);
-  }
+  // home, about, listen, follow, newsletter, contact
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +24,7 @@ class _HomePageState extends State<HomePage>
     bottomPadding = 0.01 * screenHeight;
     return Scaffold(
       backgroundColor: Colors.black,
+      // TODO: add custom bar here
       endDrawer: drawer(),
       key: scaffoldKey,
       body: Padding(
@@ -114,19 +54,7 @@ class _HomePageState extends State<HomePage>
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        CustomTabBar(
-          controller: tabController,
-          tabs: contentViews.map((cv) => cv.tab).toList(),
-        ),
-        SizedBox(
-          height: scaling * screenHeight,
-          child: TabBarView(
-            controller: tabController,
-            children: contentViews.map((cv) => cv.content).toList(),
-          ),
-        ),
-      ],
+      children: [Container()],
     );
   }
 
@@ -145,7 +73,7 @@ class _HomePageState extends State<HomePage>
           children: [
             IconButton(
               icon: const Icon(Icons.menu_rounded),
-              iconSize: screenWidth * 0.08,
+              iconSize: screenWidth * 0.05,
               onPressed: () => scaffoldKey.currentState?.openEndDrawer(),
               color: Colors.white,
             )
@@ -155,24 +83,16 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  // TODO: edit drawer theme like we did for the CustomTabBar
+  // TODO: edit drawer and its theme
   Widget drawer() {
     return Drawer(
         child: ListView(
-            children: [
-                  Container(
-                    height: screenHeight * 0.1,
-                  )
-                ] +
-                contentViews
-                    .map(
-                      (e) => Container(
-                        child: ListTile(
-                          title: Text(e.tab.title),
-                          onTap: () {},
-                        ),
-                      ),
-                    )
-                    .toList()));
+      children: [
+        Container(
+          height: screenHeight * 0.1,
+        )
+      ],
+      // TODO: add children buttons
+    ));
   }
 }
