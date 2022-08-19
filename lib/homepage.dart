@@ -1,3 +1,4 @@
+import 'package:delilahbrao/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +16,6 @@ class _HomePageState extends State<HomePage>
   late double screenWidth;
   late double bottomPadding;
 
-  // home, about, listen, follow, newsletter, contact
-
   @override
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
@@ -24,37 +23,37 @@ class _HomePageState extends State<HomePage>
     bottomPadding = 0.01 * screenHeight;
     return Scaffold(
       backgroundColor: Colors.black,
-      // TODO: add custom bar here
       endDrawer: drawer(),
       key: scaffoldKey,
-      body: Padding(
-        padding: EdgeInsets.only(bottom: bottomPadding),
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints viewPortConstraints) {
-            if (viewPortConstraints.maxWidth > 700) {
-              return desktopView();
-            }
-            return mobileView();
-          },
-        ),
+      body: LayoutBuilder(
+        builder: (
+          BuildContext context,
+          BoxConstraints viewPortConstraints,
+        ) {
+          if (viewPortConstraints.maxWidth > 700) {
+            return desktopView();
+          }
+          return mobileView();
+        },
       ),
     );
   }
 
   Widget desktopView() {
-    double scaling = screenHeight > 800
-        ? 1
-        : screenHeight > 550
-            ? 0.9
-            : screenHeight > 400
-                ? 0.87
-                : screenHeight > 330
-                    ? 0.84
-                    : 0.8;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [Container()],
+    return Container(
+      // the container is a canvas covering the entire screen
+      width: screenWidth,
+      height: screenHeight,
+      color: Colors.blue.withOpacity(0.5),
+      child: Stack(
+        children: const [
+          // keep the navigation bar at the top of the page
+          Positioned(
+            top: 0,
+            child: CustomNavigationBar(),
+          ),
+        ],
+      ),
     );
   }
 
