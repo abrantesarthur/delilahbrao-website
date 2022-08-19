@@ -22,35 +22,41 @@ class _HomePageState extends State<HomePage>
     screenWidth = MediaQuery.of(context).size.width;
     bottomPadding = 0.01 * screenHeight;
     return Scaffold(
-      backgroundColor: Colors.black,
       endDrawer: drawer(),
       key: scaffoldKey,
-      body: LayoutBuilder(
-        builder: (
-          BuildContext context,
-          BoxConstraints viewPortConstraints,
-        ) {
-          if (viewPortConstraints.maxWidth > 700) {
-            return desktopView();
-          }
-          return mobileView();
-        },
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: LayoutBuilder(
+          builder: (
+            BuildContext context,
+            BoxConstraints viewPortConstraints,
+          ) {
+            if (viewPortConstraints.maxWidth > 700) {
+              return desktopView();
+            }
+            return mobileView();
+          },
+        ),
       ),
     );
   }
 
   Widget desktopView() {
-    return Container(
+    return SizedBox(
       // the container is a canvas covering the entire screen
       width: screenWidth,
       height: screenHeight,
-      color: Colors.blue.withOpacity(0.5),
       child: Stack(
         children: const [
           // keep the navigation bar at the top of the page
           // make it the last item in the list so the navbar is at the top of the stack
           Positioned(
-            top: 0,
+            top: 80,
             child: CustomNavigationBar(),
           ),
         ],
