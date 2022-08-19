@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage>
       child: Stack(
         children: const [
           // keep the navigation bar at the top of the page
+          // make it the last item in the list so the navbar is at the top of the stack
           Positioned(
             top: 0,
             child: CustomNavigationBar(),
