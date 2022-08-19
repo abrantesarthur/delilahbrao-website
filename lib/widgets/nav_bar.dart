@@ -34,13 +34,15 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                 children: [
                   action.dropdownOptions.isEmpty
                       // TODO: remove container and leave only child text
-                      ? Container(
-                          width: 100,
-                          height: 30,
-                          color: Colors.green.withOpacity(0.7),
-                          alignment: Alignment.center,
-                          child: Text(
-                            action.name,
+                      ? InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: 100,
+                            color: Colors.green.withOpacity(0.7),
+                            alignment: Alignment.center,
+                            child: Text(
+                              action.name,
+                            ),
                           ),
                         )
                       // TODO: extract this into a different component
@@ -51,14 +53,12 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                             InkWell(
                               child: Container(
                                 width: 100,
-                                height: 30,
                                 color: Colors.green.withOpacity(0.7),
                                 alignment: Alignment.center,
                                 child: Text(action.name),
                               ),
                               onTap: () {},
                               onHover: (_) {
-                                debugPrint("hovered");
                                 setState(() {
                                   displayDropdowns[index] =
                                       !displayDropdowns[index];
@@ -69,7 +69,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                             displayDropdowns[index]
                                 ? Positioned(
                                     // TODO: has to be 10 more than height
-                                    top: 40,
+                                    top: 30,
                                     child: Container(
                                       color: Colors.black,
                                       child: Column(
@@ -79,8 +79,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                                 (option) => Padding(
                                                   child: Container(
                                                     width: 200,
-                                                    height: 30,
-                                                    alignment: Alignment.center,
+                                                    alignment:
+                                                        Alignment.centerLeft,
                                                     color: Colors.green
                                                         .withOpacity(0.7),
                                                     child: Text(option),
