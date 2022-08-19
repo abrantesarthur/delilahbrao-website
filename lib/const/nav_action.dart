@@ -1,14 +1,14 @@
 class CustomAction {
   final String name;
-  final List<String>? dropdownOptions;
+  final List<String> dropdownOptions;
 
-  CustomAction(this.name, {this.dropdownOptions});
+  CustomAction(this.name, {required this.dropdownOptions});
 }
 
-List<CustomAction> actions = [
-  CustomAction("home"),
+List<CustomAction> navigationActions = [
+  CustomAction("HOME", dropdownOptions: []),
   CustomAction(
-    "listen",
+    "LISTEN",
     dropdownOptions: [
       "spotify",
       "apple music",
@@ -20,7 +20,7 @@ List<CustomAction> actions = [
     ],
   ),
   CustomAction(
-    "follow",
+    "FOLLOW",
     dropdownOptions: [
       "instagram",
       "twitter",
@@ -30,6 +30,6 @@ List<CustomAction> actions = [
       "twitch",
     ],
   ),
-  CustomAction("about"),
-  CustomAction("newsletter"),
+  CustomAction("ABOUT", dropdownOptions: []),
+  CustomAction("NEWSLETTER", dropdownOptions: []),
 ];
