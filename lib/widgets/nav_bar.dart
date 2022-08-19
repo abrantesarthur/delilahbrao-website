@@ -1,6 +1,12 @@
 import 'package:delilahbrao/const/nav_action.dart';
 import 'package:flutter/material.dart';
 
+/**
+ * TODO: fix problem with hovering
+ *    the issue is the InkWell is inside a Positioned.
+ *    see here https://github.com/flutter/flutter/issues/104519
+ */
+
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
 
