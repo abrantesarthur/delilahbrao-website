@@ -13,6 +13,22 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
   List<bool> displayDropdowns = navigationActions.map((a) => false).toList();
 
+  TextStyle getActionTextStyle() {
+    return const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+    );
+  }
+
+  TextStyle getOptionTextStyle() {
+    return const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -48,10 +64,11 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                           },
                           child: Container(
                             width: 100,
-                            color: Colors.green.withOpacity(0.7),
+                            color: Colors.green.withOpacity(0.3),
                             alignment: Alignment.center,
                             child: Text(
                               action.name,
+                              style: getActionTextStyle(),
                             ),
                           ),
                         )
@@ -63,9 +80,12 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                             InkWell(
                               child: Container(
                                 width: 100,
-                                color: Colors.green.withOpacity(0.7),
+                                color: Colors.green.withOpacity(0.5),
                                 alignment: Alignment.center,
-                                child: Text(action.name),
+                                child: Text(
+                                  action.name,
+                                  style: getActionTextStyle(),
+                                ),
                               ),
                               onTap: () {},
                               // TODO: extract into a different component
@@ -83,7 +103,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                   });
                                 } else {
                                   Future.delayed(
-                                      const Duration(milliseconds: 500), () {
+                                      const Duration(milliseconds: 100), () {
                                     setState(() {
                                       displayDropdowns[index] = false;
                                     });
@@ -118,8 +138,12 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                                       alignment:
                                                           Alignment.centerLeft,
                                                       color: Colors.green
-                                                          .withOpacity(0.7),
-                                                      child: Text(option),
+                                                          .withOpacity(0.3),
+                                                      child: Text(
+                                                        option,
+                                                        style:
+                                                            getOptionTextStyle(),
+                                                      ),
                                                     ),
                                                     // TODO: extract into a function
                                                     padding:
