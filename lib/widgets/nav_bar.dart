@@ -58,11 +58,20 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                 child: Text(action.name),
                               ),
                               onTap: () {},
-                              onHover: (_) {
-                                setState(() {
-                                  displayDropdowns[index] =
-                                      !displayDropdowns[index];
-                                });
+                              // TODO: extract into a different component
+                              onHover: (active) {
+                                if (active) {
+                                  setState(() {
+                                    displayDropdowns[index] = true;
+                                  });
+                                } else {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 500), () {
+                                    setState(() {
+                                      displayDropdowns[index] = false;
+                                    });
+                                  });
+                                }
                               },
                             ),
                             // TODO: display only when hovering
@@ -70,33 +79,44 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                 ? Positioned(
                                     // TODO: has to be 10 more than height
                                     top: 30,
-                                    child: Container(
-                                      color: Colors.black,
-                                      child: Column(
-                                        children: [
-                                          ...action.dropdownOptions
-                                              .map(
-                                                (option) => Padding(
-                                                  child: Container(
-                                                    width: 200,
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    color: Colors.green
-                                                        .withOpacity(0.7),
-                                                    child: Text(option),
+                                    child: InkWell(
+                                      onTap: () {},
+                                      // TODO: extract into
+                                      onHover: (active) {
+                                        if (active) {
+                                          setState(() {
+                                            displayDropdowns[index] = true;
+                                          });
+                                        }
+                                      },
+                                      child: Container(
+                                        color: Colors.black,
+                                        child: Column(
+                                          children: [
+                                            ...action.dropdownOptions
+                                                .map(
+                                                  (option) => Padding(
+                                                    child: Container(
+                                                      width: 200,
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      color: Colors.green
+                                                          .withOpacity(0.7),
+                                                      child: Text(option),
+                                                    ),
+                                                    // TODO: extract into a function
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                      left: 20,
+                                                      right: 20,
+                                                      top: 5,
+                                                      bottom: 5,
+                                                    ),
                                                   ),
-                                                  // TODO: extract into a function
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    left: 20,
-                                                    right: 20,
-                                                    top: 5,
-                                                    bottom: 5,
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                        ],
+                                                )
+                                                .toList(),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   )
