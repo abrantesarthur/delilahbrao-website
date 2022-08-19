@@ -36,6 +36,16 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                       // TODO: remove container and leave only child text
                       ? InkWell(
                           onTap: () {},
+                          onHover: (v) {
+                            if (v) {
+                              for (var i = 0;
+                                  i < displayDropdowns.length;
+                                  ++i) {
+                                displayDropdowns[i] = false;
+                              }
+                              setState(() {});
+                            }
+                          },
                           child: Container(
                             width: 100,
                             color: Colors.green.withOpacity(0.7),
@@ -61,6 +71,13 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                               // TODO: extract into a different component
                               onHover: (active) {
                                 if (active) {
+                                  // hide other dropdowns
+                                  for (var i = 0;
+                                      i < displayDropdowns.length;
+                                      ++i) {
+                                    displayDropdowns[i] = false;
+                                  }
+                                  // display this dropdown
                                   setState(() {
                                     displayDropdowns[index] = true;
                                   });
@@ -81,7 +98,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                     top: 30,
                                     child: InkWell(
                                       onTap: () {},
-                                      // TODO: extract into
+                                      // TODO: extract into a function
                                       onHover: (active) {
                                         if (active) {
                                           setState(() {
