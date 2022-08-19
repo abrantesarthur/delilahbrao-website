@@ -9,6 +9,8 @@ class CustomNavigationBar extends StatefulWidget {
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
   late double screenWidth;
+  // TODO: make it a list: one for each action
+  bool displayDropdown = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,49 +44,61 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
             // allow stack items to overflow its boundaries
             clipBehavior: Clip.none,
             children: [
-              Container(
-                width: 100,
-                height: 30,
-                color: Colors.green.withOpacity(0.7),
-              ),
-              Positioned(
-                // TODO: has to be 10 more than height
-                top: 40,
+              InkWell(
                 child: Container(
-                  color: Colors.black,
-                  child: Column(
-                    children: [
-                      Padding(
-                        // TODO: extract into a function
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                          top: 5,
-                          bottom: 5,
-                        ),
-                        child: Container(
-                          width: 200,
-                          height: 30,
-                          color: Colors.green.withOpacity(0.7),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 20,
-                          right: 20,
-                          top: 5,
-                          bottom: 5,
-                        ),
-                        child: Container(
-                          width: 200,
-                          height: 30,
-                          color: Colors.green.withOpacity(0.7),
-                        ),
-                      ),
-                    ],
-                  ),
+                  width: 100,
+                  height: 30,
+                  color: Colors.green.withOpacity(0.7),
                 ),
+                onTap: () {},
+                onHover: (_) {
+                  debugPrint("hovered");
+                  setState(() {
+                    displayDropdown = !displayDropdown;
+                  });
+                },
               ),
+              // TODO: display only when hovering
+              displayDropdown
+                  ? Positioned(
+                      // TODO: has to be 10 more than height
+                      top: 40,
+                      child: Container(
+                        color: Colors.black,
+                        child: Column(
+                          children: [
+                            Padding(
+                              // TODO: extract into a function
+                              padding: const EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                                top: 5,
+                                bottom: 5,
+                              ),
+                              child: Container(
+                                width: 200,
+                                height: 30,
+                                color: Colors.green.withOpacity(0.7),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 20,
+                                right: 20,
+                                top: 5,
+                                bottom: 5,
+                              ),
+                              child: Container(
+                                width: 200,
+                                height: 30,
+                                color: Colors.green.withOpacity(0.7),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Container(),
             ],
           ),
           const SizedBox(width: 5),
