@@ -19,22 +19,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
 
   List<bool> displayDropdowns = navigationActions.map((a) => false).toList();
 
-  TextStyle getActionTextStyle() {
-    return const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-    );
-  }
-
-  TextStyle getOptionTextStyle() {
-    return const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -181,6 +165,22 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
           Flexible(child: Container()),
         ],
       ),
+    );
+  }
+
+  TextStyle getActionTextStyle() {
+    return const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+    );
+  }
+
+  TextStyle getOptionTextStyle() {
+    return const TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
     );
   }
 }
