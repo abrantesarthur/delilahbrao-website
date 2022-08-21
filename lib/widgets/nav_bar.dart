@@ -58,12 +58,7 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                             displayDropdowns[index]
                                 ? NavigationBarDropdwon(
                                     options: action.dropdownOptions,
-                                    onHover: (active) {
-                                      setState(() {
-                                        dropdownIsActive[index] = active;
-                                        displayDropdowns[index] = active;
-                                      });
-                                    },
+                                    onHover: (v) => onHoverDropdown(v, index),
                                   )
                                 : Container(),
                           ],
@@ -111,5 +106,12 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
         });
       });
     }
+  }
+
+  void onHoverDropdown(bool active, int index) {
+    setState(() {
+      dropdownIsActive[index] = active;
+      displayDropdowns[index] = active;
+    });
   }
 }
