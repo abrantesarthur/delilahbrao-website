@@ -1,15 +1,7 @@
 import 'package:delilahbrao/const/nav_action.dart';
-import 'package:delilahbrao/homepage.dart';
 import 'package:delilahbrao/widgets/nav_bar_action.dart';
 import 'package:delilahbrao/widgets/nav_bar_dropdown.dart';
-import 'package:delilahbrao/widgets/overlay.dart';
 import 'package:flutter/material.dart';
-
-/**
- * TODO: fix problem with hovering
- *    the issue is the InkWell is inside a Positioned.
- *    see here https://github.com/flutter/flutter/issues/104519
- */
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -63,7 +55,7 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                                 : Container(),
                           ],
                         ),
-                  // don't add space after last action
+                  // don't add space after last actionr
                   index != navigationActions.length - 1
                       ? const SizedBox(width: 5)
                       : Container(),

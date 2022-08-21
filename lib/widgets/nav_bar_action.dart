@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NavigationBarAction extends StatelessWidget {
-  NavigationBarAction({
+  const NavigationBarAction({
     Key? key,
     required this.title,
     this.onTap,
@@ -10,11 +10,11 @@ class NavigationBarAction extends StatelessWidget {
     this.alignment,
   }) : super(key: key);
 
-  String title;
-  GestureTapCallback? onTap;
-  ValueChanged<bool>? onHover;
-  double? width;
-  Alignment? alignment;
+  final String title;
+  final GestureTapCallback? onTap;
+  final ValueChanged<bool>? onHover;
+  final double? width;
+  final Alignment? alignment;
 
   @override
   Widget build(BuildContext context) {
