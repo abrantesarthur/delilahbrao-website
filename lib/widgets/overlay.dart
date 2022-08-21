@@ -13,7 +13,7 @@ class OverlayWidget extends StatefulWidget {
   final double horizontalOffset;
   final double verticalOffset;
   final Widget child;
-  final void Function(bool) onHover;
+  final ValueChanged<bool>? onHover;
 
   @override
   State<OverlayWidget> createState() => _OverlayWidgetState();

@@ -1,6 +1,7 @@
 import 'package:delilahbrao/const/nav_action.dart';
 import 'package:delilahbrao/homepage.dart';
 import 'package:delilahbrao/widgets/nav_bar_action.dart';
+import 'package:delilahbrao/widgets/nav_bar_dropdown.dart';
 import 'package:delilahbrao/widgets/overlay.dart';
 import 'package:flutter/material.dart';
 
@@ -90,47 +91,21 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                               },
                             ),
                             displayDropdowns[index]
-                                ? OverlayWidget(
-                                    verticalOffset: 105,
+                                ? NavigationBarDropdwon(
+                                    options: action.dropdownOptions,
                                     onHover: (active) {
                                       setState(() {
                                         dropdownIsActive[index] = active;
                                         displayDropdowns[index] = active;
                                       });
                                     },
-                                    child: Container(
-                                      color: Colors.black.withOpacity(0.6),
-                                      child: Column(
-                                        children: [
-                                          ...action.dropdownOptions
-                                              .map(
-                                                (option) => Padding(
-                                                  child: NavigationBarAction(
-                                                    title: option,
-                                                    width: 200,
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                  ),
-                                                  // TODO: extract into a function
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    left: 20,
-                                                    right: 20,
-                                                    top: 5,
-                                                    bottom: 5,
-                                                  ),
-                                                ),
-                                              )
-                                              .toList(),
-                                        ],
-                                      ),
-                                    ))
+                                  )
                                 : Container(),
                           ],
                         ),
                   // don't add space after last action
                   index != navigationActions.length - 1
-                      ? SizedBox(width: 5)
+                      ? const SizedBox(width: 5)
                       : Container(),
                 ],
               );
