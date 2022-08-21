@@ -23,7 +23,6 @@ class NavigationBarAction extends StatelessWidget {
       onHover: onHover,
       child: Container(
         width: width ?? 100,
-        color: Colors.green.withOpacity(0.3),
         alignment: alignment ?? Alignment.center,
         child: Text(
           title,

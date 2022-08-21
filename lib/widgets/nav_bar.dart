@@ -28,10 +28,9 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
 
-    // navigation bar expands to fill the screen
-    return Container(
+    return SizedBox(
+      // navigation bar expands to fill the screen
       width: screenWidth,
-      color: Colors.green.withOpacity(0.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,51 +43,17 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
               return Row(
                 children: [
                   action.dropdownOptions.isEmpty
-                      // TODO: remove container and leave only child text
                       ? NavigationBarAction(
                           title: action.name,
-                          onHover: (v) {
-                            if (v) {
-                              // remove other dropdowns when hovering over an action
-                              for (var i = 0;
-                                  i < displayDropdowns.length;
-                                  ++i) {
-                                displayDropdowns[i] = false;
-                              }
-                              setState(() {});
-                            }
-                          },
+                          onHover: onHoverAction,
                         )
-                      // TODO: extract this into a different component
                       : Stack(
                           // allow stack items to overflow its boundaries
                           clipBehavior: Clip.none,
                           children: [
                             NavigationBarAction(
                               title: action.name,
-                              onHover: (active) {
-                                if (active) {
-                                  // hide other dropdowns
-                                  for (var i = 0;
-                                      i < displayDropdowns.length;
-                                      ++i) {
-                                    displayDropdowns[i] = false;
-                                  }
-                                  // display this dropdown
-                                  setState(() {
-                                    displayDropdowns[index] = true;
-                                  });
-                                } else {
-                                  Future.delayed(
-                                      const Duration(milliseconds: 100), () {
-                                    setState(() {
-                                      if (!dropdownIsActive[index]) {
-                                        displayDropdowns[index] = false;
-                                      }
-                                    });
-                                  });
-                                }
-                              },
+                              onHover: (v) => onHoverDropdownAction(v, index),
                             ),
                             displayDropdowns[index]
                                 ? NavigationBarDropdwon(
@@ -115,5 +80,36 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
         ],
       ),
     );
+  }
+
+  void hideDropdowns() {
+    for (var i = 0; i < displayDropdowns.length; ++i) {
+      displayDropdowns[i] = false;
+    }
+  }
+
+  void onHoverAction(bool active) {
+    if (active) {
+      if (active) {
+        hideDropdowns();
+        setState(() {});
+      }
+    }
+  }
+
+  void onHoverDropdownAction(bool active, int index) {
+    if (active) {
+      hideDropdowns();
+      displayDropdowns[index] = true;
+      setState(() {});
+    } else {
+      Future.delayed(const Duration(milliseconds: 100), () {
+        setState(() {
+          if (!dropdownIsActive[index]) {
+            displayDropdowns[index] = false;
+          }
+        });
+      });
+    }
   }
 }
