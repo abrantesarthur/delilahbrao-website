@@ -1,18 +1,19 @@
 import 'package:delilahbrao/homepage.dart';
+import 'package:delilahbrao/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class OverlayWidget extends StatefulWidget {
-  const OverlayWidget(
-      {Key? key,
-      required this.parentWidget,
-      required this.horizontalOffset,
-      required this.verticalOffset,
-      required this.mediaQuery})
-      : super(key: key);
-  final GlobalKey<HomePageState> parentWidget;
+  const OverlayWidget({
+    Key? key,
+    required this.child,
+    this.horizontalOffset = 0,
+    this.verticalOffset = 0,
+    required this.onHover,
+  }) : super(key: key);
   final double horizontalOffset;
   final double verticalOffset;
-  final MediaQueryData mediaQuery;
+  final Widget child;
+  final void Function(bool) onHover;
 
   @override
   State<OverlayWidget> createState() => _OverlayWidgetState();
@@ -24,6 +25,12 @@ class _OverlayWidgetState extends State<OverlayWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    removeOverlay();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
     removeOverlay();
   }
 
@@ -57,31 +64,21 @@ class _OverlayWidgetState extends State<OverlayWidget> {
         return Stack(
           clipBehavior: Clip.none,
           children: [
-            // TODO: my guess is that this would be the child
             Positioned(
               left: parentPosition.dx +
+                  widget.horizontalOffset +
                   parentSize.width -
-                  clickableArea -
-                  widget.horizontalOffset,
+                  clickableArea,
               top: parentPosition.dy +
+                  widget.verticalOffset +
                   parentSize.height -
-                  clickableArea -
-                  widget.verticalOffset,
+                  clickableArea,
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: () {
-                    // widget.parentWidget.currentState!.incrementCounter();
-                  },
-                  child: Container(
-                    color: Colors.blue.withAlpha(200),
-                    width: clickableArea,
-                    height: clickableArea,
-                    child: Text(
-                      'InkWell (Overlay)',
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                  ),
+                  onTap: () {},
+                  onHover: widget.onHover,
+                  child: widget.child,
                 ),
               ),
             ),

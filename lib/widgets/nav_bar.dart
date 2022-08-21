@@ -1,4 +1,7 @@
 import 'package:delilahbrao/const/nav_action.dart';
+import 'package:delilahbrao/homepage.dart';
+import 'package:delilahbrao/widgets/nav_bar_action.dart';
+import 'package:delilahbrao/widgets/overlay.dart';
 import 'package:flutter/material.dart';
 
 /**
@@ -11,13 +14,14 @@ class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
 
   @override
-  _CustomNavigationBarState createState() => _CustomNavigationBarState();
+  CustomNavigationBarState createState() => CustomNavigationBarState();
 }
 
-class _CustomNavigationBarState extends State<CustomNavigationBar> {
+class CustomNavigationBarState extends State<CustomNavigationBar> {
   late double screenWidth;
 
   List<bool> displayDropdowns = navigationActions.map((a) => false).toList();
+  List<bool> dropdownIsActive = navigationActions.map((a) => false).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +44,11 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                 children: [
                   action.dropdownOptions.isEmpty
                       // TODO: remove container and leave only child text
-                      ? InkWell(
-                          onTap: () {},
+                      ? NavigationBarAction(
+                          title: action.name,
                           onHover: (v) {
                             if (v) {
+                              // remove other dropdowns when hovering over an action
                               for (var i = 0;
                                   i < displayDropdowns.length;
                                   ++i) {
@@ -52,33 +57,14 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                               setState(() {});
                             }
                           },
-                          child: Container(
-                            width: 100,
-                            color: Colors.green.withOpacity(0.3),
-                            alignment: Alignment.center,
-                            child: Text(
-                              action.name,
-                              style: getActionTextStyle(),
-                            ),
-                          ),
                         )
                       // TODO: extract this into a different component
                       : Stack(
                           // allow stack items to overflow its boundaries
                           clipBehavior: Clip.none,
                           children: [
-                            InkWell(
-                              child: Container(
-                                width: 100,
-                                color: Colors.green.withOpacity(0.5),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  action.name,
-                                  style: getActionTextStyle(),
-                                ),
-                              ),
-                              onTap: () {},
-                              // TODO: extract into a different component
+                            NavigationBarAction(
+                              title: action.name,
                               onHover: (active) {
                                 if (active) {
                                   // hide other dropdowns
@@ -95,62 +81,50 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                                   Future.delayed(
                                       const Duration(milliseconds: 100), () {
                                     setState(() {
-                                      displayDropdowns[index] = false;
+                                      if (!dropdownIsActive[index]) {
+                                        displayDropdowns[index] = false;
+                                      }
                                     });
                                   });
                                 }
                               },
                             ),
-                            // TODO: display only when hovering
                             displayDropdowns[index]
-                                ? Positioned(
-                                    // TODO: has to be 10 more than height
-                                    top: 30,
-                                    child: InkWell(
-                                      onTap: () {},
-                                      // TODO: extract into a function
-                                      onHover: (active) {
-                                        if (active) {
-                                          setState(() {
-                                            displayDropdowns[index] = true;
-                                          });
-                                        }
-                                      },
-                                      child: Container(
-                                        color: Colors.black,
-                                        child: Column(
-                                          children: [
-                                            ...action.dropdownOptions
-                                                .map(
-                                                  (option) => Padding(
-                                                    child: Container(
-                                                      width: 200,
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      color: Colors.green
-                                                          .withOpacity(0.3),
-                                                      child: Text(
-                                                        option,
-                                                        style:
-                                                            getOptionTextStyle(),
-                                                      ),
-                                                    ),
-                                                    // TODO: extract into a function
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                      left: 20,
-                                                      right: 20,
-                                                      top: 5,
-                                                      bottom: 5,
-                                                    ),
+                                ? OverlayWidget(
+                                    verticalOffset: 105,
+                                    onHover: (active) {
+                                      setState(() {
+                                        dropdownIsActive[index] = active;
+                                        displayDropdowns[index] = active;
+                                      });
+                                    },
+                                    child: Container(
+                                      color: Colors.black.withOpacity(0.6),
+                                      child: Column(
+                                        children: [
+                                          ...action.dropdownOptions
+                                              .map(
+                                                (option) => Padding(
+                                                  child: NavigationBarAction(
+                                                    title: option,
+                                                    width: 200,
+                                                    alignment:
+                                                        Alignment.centerLeft,
                                                   ),
-                                                )
-                                                .toList(),
-                                          ],
-                                        ),
+                                                  // TODO: extract into a function
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                    left: 20,
+                                                    right: 20,
+                                                    top: 5,
+                                                    bottom: 5,
+                                                  ),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ],
                                       ),
-                                    ),
-                                  )
+                                    ))
                                 : Container(),
                           ],
                         ),
@@ -165,22 +139,6 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
           Flexible(child: Container()),
         ],
       ),
-    );
-  }
-
-  TextStyle getActionTextStyle() {
-    return const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-    );
-  }
-
-  TextStyle getOptionTextStyle() {
-    return const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
     );
   }
 }
