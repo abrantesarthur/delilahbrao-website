@@ -2,6 +2,7 @@ import 'package:delilahbrao/const/nav_action.dart';
 import 'package:delilahbrao/widgets/nav_bar_action.dart';
 import 'package:delilahbrao/widgets/nav_bar_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'dart:html' as html;
 
 class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({Key? key}) : super(key: key);
@@ -37,7 +38,9 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                   action.dropdownOptions.isEmpty
                       ? NavigationBarAction(
                           title: action.name,
-                          onHover: onHoverAction,
+                          isActive: action.isActive,
+                          onHover: (v) => onHoverAction(v, index),
+                          onTap: () => onTapAction(context, action),
                         )
                       : Stack(
                           // allow stack items to overflow its boundaries
@@ -45,10 +48,12 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                           children: [
                             NavigationBarAction(
                               title: action.name,
+                              isActive: action.isActive,
                               onHover: (v) => onHoverDropdownAction(v, index),
+                              onTap: () => onTapAction(context, action),
                             ),
                             displayDropdowns[index]
-                                ? NavigationBarDropdwon(
+                                ? NavigationBarDropdown(
                                     options: action.dropdownOptions,
                                     onHover: (v) => onHoverDropdown(v, index),
                                   )
@@ -75,12 +80,21 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
     }
   }
 
-  void onHoverAction(bool active) {
+  void onHoverAction(bool active, int actionIndex) {
     if (active) {
-      if (active) {
-        hideDropdowns();
-        setState(() {});
-      }
+      hideDropdowns();
+    }
+    // mark the action as active for hovering effects
+    navigationActions[actionIndex].isActive = active;
+    setState(() {});
+  }
+
+  void onTapAction(BuildContext context, CustomAction action) {
+    if (action.link != null) {
+      html.window.open(action.link ?? "", "new tab");
+    } else if (action.routeName != null &&
+        ModalRoute.of(context)?.settings.name != action.routeName) {
+      Navigator.pushNamed(context, action.routeName ?? "/");
     }
   }
 
@@ -88,9 +102,11 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
     if (active) {
       hideDropdowns();
       displayDropdowns[index] = true;
+      navigationActions[index].isActive = true;
       setState(() {});
     } else {
-      Future.delayed(const Duration(milliseconds: 100), () {
+      navigationActions[index].isActive = false;
+      Future.delayed(const Duration(milliseconds: 2000), () {
         setState(() {
           if (!dropdownIsActive[index]) {
             displayDropdowns[index] = false;
@@ -104,6 +120,7 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
     setState(() {
       dropdownIsActive[index] = active;
       displayDropdowns[index] = active;
+      navigationActions[index].isActive = active;
     });
   }
 }

@@ -8,12 +8,10 @@ class OverlayWidget extends StatefulWidget {
     required this.child,
     this.horizontalOffset = 0,
     this.verticalOffset = 0,
-    required this.onHover,
   }) : super(key: key);
   final double horizontalOffset;
   final double verticalOffset;
   final Widget child;
-  final ValueChanged<bool>? onHover;
 
   @override
   State<OverlayWidget> createState() => _OverlayWidgetState();
@@ -75,11 +73,7 @@ class _OverlayWidgetState extends State<OverlayWidget> {
                   clickableArea,
               child: Material(
                 color: Colors.transparent,
-                child: InkWell(
-                  onTap: () {},
-                  onHover: widget.onHover,
-                  child: widget.child,
-                ),
+                child: widget.child,
               ),
             ),
           ],

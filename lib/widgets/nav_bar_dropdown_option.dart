@@ -1,7 +1,8 @@
+import 'package:delilahbrao/widgets/custom_inkwell.dart';
 import 'package:flutter/material.dart';
 
-class NavigationBarAction extends StatelessWidget {
-  const NavigationBarAction({
+class NavigationBarOption extends StatelessWidget {
+  const NavigationBarOption({
     Key? key,
     required this.title,
     required this.isActive,
@@ -22,17 +23,19 @@ class NavigationBarAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap ?? () {},
+    return CustomInkWell(
       onHover: onHover,
-      child: Padding(
-        padding: padding ?? const EdgeInsets.all(0),
-        child: Container(
-          width: width ?? 100,
-          alignment: alignment ?? Alignment.center,
-          child: Text(
-            title,
-            style: getActionTextStyle(),
+      child: GestureDetector(
+        onTap: onTap ?? () {},
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            width: width ?? 100,
+            alignment: alignment ?? Alignment.center,
+            child: Text(
+              title,
+              style: getActionTextStyle(),
+            ),
           ),
         ),
       ),
