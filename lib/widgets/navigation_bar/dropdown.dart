@@ -41,10 +41,7 @@ class _NavigationBarDropdownState extends State<NavigationBarDropdown> {
                   top: 5,
                   bottom: 5,
                 ),
-                onTap: () {
-                  debugPrint(option.link);
-                  html.window.open(option.link, "new tab");
-                },
+                onTap: () => html.window.open(option.link, "new tab"),
                 onHover: (active) {
                   widget.options[index].isActive = active;
                   widget.onHover(active);
