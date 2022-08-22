@@ -27,7 +27,7 @@ class NavigationBarOption extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap ?? () {},
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: padding ?? const EdgeInsets.all(0),
           child: Container(
             width: width ?? 100,
             alignment: alignment ?? Alignment.center,

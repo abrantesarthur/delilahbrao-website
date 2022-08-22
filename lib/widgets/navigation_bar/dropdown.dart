@@ -24,6 +24,7 @@ class _NavigationBarDropdownState extends State<NavigationBarDropdown> {
   Widget build(BuildContext context) {
     return OverlayWidget(
       verticalOffset: 105,
+      horizontalOffset: -10,
       child: Container(
         color: Colors.black.withOpacity(0.6),
         child: Column(
