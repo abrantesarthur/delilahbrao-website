@@ -1,6 +1,6 @@
 import 'package:delilahbrao/const/nav_action.dart';
-import 'package:delilahbrao/widgets/nav_bar_action.dart';
-import 'package:delilahbrao/widgets/nav_bar_dropdown.dart';
+import 'package:delilahbrao/widgets/navigation_bar/action.dart';
+import 'package:delilahbrao/widgets/navigation_bar/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 

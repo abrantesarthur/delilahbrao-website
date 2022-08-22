@@ -1,5 +1,5 @@
 import 'package:delilahbrao/homepage.dart';
-import 'package:delilahbrao/widgets/nav_bar.dart';
+import 'package:delilahbrao/widgets/navigation_bar/index.dart';
 import 'package:flutter/material.dart';
 
 class OverlayWidget extends StatefulWidget {
