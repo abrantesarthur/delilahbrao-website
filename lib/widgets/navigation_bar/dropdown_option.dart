@@ -1,11 +1,11 @@
+import 'package:delilahbrao/const/nav_action.dart';
 import 'package:delilahbrao/widgets/custom_inkwell.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBarOption extends StatelessWidget {
   const NavigationBarOption({
     Key? key,
-    required this.title,
-    required this.isActive,
+    required this.option,
     this.onTap,
     this.onHover,
     this.width,
@@ -13,8 +13,7 @@ class NavigationBarOption extends StatelessWidget {
     this.padding,
   }) : super(key: key);
 
-  final String title;
-  final bool isActive;
+  final DropdownOption option;
   final GestureTapCallback? onTap;
   final ValueChanged<bool>? onHover;
   final double? width;
@@ -33,7 +32,7 @@ class NavigationBarOption extends StatelessWidget {
             width: width ?? 100,
             alignment: alignment ?? Alignment.center,
             child: Text(
-              title,
+              option.title,
               style: getActionTextStyle(),
             ),
           ),
@@ -44,7 +43,7 @@ class NavigationBarOption extends StatelessWidget {
 
   TextStyle getActionTextStyle() {
     return TextStyle(
-      color: isActive ? Colors.red : Colors.white,
+      color: option.isActive ? Colors.red : Colors.white,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     );

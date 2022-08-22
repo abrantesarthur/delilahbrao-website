@@ -32,8 +32,7 @@ class _NavigationBarDropdownState extends State<NavigationBarDropdown> {
               DropdownOption option = e.value;
               int index = e.key;
               return NavigationBarOption(
-                title: option.title,
-                isActive: option.isActive,
+                option: option,
                 width: 200,
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(

@@ -1,10 +1,10 @@
+import 'package:delilahbrao/const/nav_action.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBarAction extends StatelessWidget {
   const NavigationBarAction({
     Key? key,
-    required this.title,
-    required this.isActive,
+    required this.action,
     this.onTap,
     this.onHover,
     this.width,
@@ -12,8 +12,7 @@ class NavigationBarAction extends StatelessWidget {
     this.padding,
   }) : super(key: key);
 
-  final String title;
-  final bool isActive;
+  final CustomAction action;
   final GestureTapCallback? onTap;
   final ValueChanged<bool>? onHover;
   final double? width;
@@ -31,7 +30,7 @@ class NavigationBarAction extends StatelessWidget {
           width: width ?? 100,
           alignment: alignment ?? Alignment.center,
           child: Text(
-            title,
+            action.name,
             style: getActionTextStyle(),
           ),
         ),
@@ -41,7 +40,7 @@ class NavigationBarAction extends StatelessWidget {
 
   TextStyle getActionTextStyle() {
     return TextStyle(
-      color: isActive ? Colors.red : Colors.white,
+      color: action.isActive ? Colors.red : Colors.white,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     );

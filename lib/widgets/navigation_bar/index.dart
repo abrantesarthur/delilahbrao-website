@@ -37,8 +37,7 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                 children: [
                   action.dropdownOptions.isEmpty
                       ? NavigationBarAction(
-                          title: action.name,
-                          isActive: action.isActive,
+                          action: action,
                           onHover: (v) => onHoverAction(v, index),
                           onTap: () => onTapAction(context, action),
                         )
@@ -47,8 +46,7 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                           clipBehavior: Clip.none,
                           children: [
                             NavigationBarAction(
-                              title: action.name,
-                              isActive: action.isActive,
+                              action: action,
                               onHover: (v) => onHoverDropdownAction(v, index),
                               onTap: () => onTapAction(context, action),
                             ),
