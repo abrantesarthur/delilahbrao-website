@@ -10,6 +10,7 @@ class NavigationBarAction extends StatelessWidget {
     this.width,
     this.alignment,
     this.padding,
+    this.rightIcon,
   }) : super(key: key);
 
   final CustomAction action;
@@ -18,6 +19,7 @@ class NavigationBarAction extends StatelessWidget {
   final double? width;
   final Alignment? alignment;
   final EdgeInsetsGeometry? padding;
+  final IconData? rightIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +29,27 @@ class NavigationBarAction extends StatelessWidget {
       child: Padding(
         padding: padding ?? const EdgeInsets.all(0),
         child: Container(
-          width: width ?? 100,
+          width: width ?? 110,
           alignment: alignment ?? Alignment.center,
-          child: Text(
-            action.name,
-            style: getActionTextStyle(),
+          child: Row(
+            children: [
+              Text(
+                action.name,
+                style: getActionTextStyle(),
+              ),
+              rightIcon != null
+                  ? Row(
+                      children: [
+                        const SizedBox(width: 5),
+                        Icon(
+                          rightIcon,
+                          size: 15,
+                          color: action.isActive ? Colors.red : Colors.white,
+                        ),
+                      ],
+                    )
+                  : Container(),
+            ],
           ),
         ),
       ),

@@ -47,6 +47,7 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
                           children: [
                             NavigationBarAction(
                               action: action,
+                              rightIcon: Icons.keyboard_arrow_down_rounded,
                               onHover: (v) => onHoverDropdownAction(v, index),
                               onTap: () => onTapAction(context, action),
                             ),
