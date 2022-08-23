@@ -48,12 +48,4 @@ class NavigationBarOption extends StatelessWidget {
       fontSize: 14,
     );
   }
-
-  TextStyle getOptionTextStyle() {
-    return const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
-    );
-  }
 }

@@ -1,4 +1,5 @@
 import 'package:delilahbrao/const/nav_action.dart';
+import 'package:delilahbrao/style.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBarAction extends StatelessWidget {
@@ -35,7 +36,7 @@ class NavigationBarAction extends StatelessWidget {
             children: [
               Text(
                 action.name,
-                style: getActionTextStyle(),
+                style: getActionTextStyle(action.isActive),
               ),
               rightIcon != null
                   ? Row(
@@ -55,22 +56,6 @@ class NavigationBarAction extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  TextStyle getActionTextStyle() {
-    return TextStyle(
-      color: action.isActive ? Colors.purple[400] : Colors.white,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-    );
-  }
-
-  TextStyle getOptionTextStyle() {
-    return const TextStyle(
-      color: Colors.white,
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
     );
   }
 }

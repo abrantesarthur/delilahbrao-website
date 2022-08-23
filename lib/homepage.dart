@@ -1,4 +1,7 @@
 import 'package:delilahbrao/const/footer_icons.dart';
+import 'package:delilahbrao/const/nav_action.dart';
+import 'package:delilahbrao/style.dart';
+import 'package:delilahbrao/widgets/drawer.dart';
 import 'package:delilahbrao/widgets/footer.dart';
 import 'package:delilahbrao/widgets/navigation_bar/index.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +31,7 @@ class HomePageState extends State<HomePage>
     screenWidth = MediaQuery.of(context).size.width;
     bottomPadding = 0.01 * screenHeight;
     return Scaffold(
-      endDrawer: drawer(),
+      endDrawer: CustomDrawer(),
       key: scaffoldKey,
       body: Container(
         decoration: const BoxDecoration(
@@ -93,18 +96,5 @@ class HomePageState extends State<HomePage>
         ),
       ),
     );
-  }
-
-  // TODO: edit drawer and its theme
-  Widget drawer() {
-    return Drawer(
-        child: ListView(
-      children: [
-        Container(
-          height: screenHeight * 0.1,
-        )
-      ],
-      // TODO: add children buttons
-    ));
   }
 }

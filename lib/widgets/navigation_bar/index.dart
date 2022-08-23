@@ -88,15 +88,6 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
     setState(() {});
   }
 
-  void onTapAction(BuildContext context, CustomAction action) {
-    if (action.link != null) {
-      html.window.open(action.link ?? "", "new tab");
-    } else if (action.routeName != null &&
-        ModalRoute.of(context)?.settings.name != action.routeName) {
-      Navigator.pushNamed(context, action.routeName ?? "/");
-    }
-  }
-
   void onHoverDropdownAction(bool active, int index) {
     if (active) {
       hideDropdowns();
@@ -121,5 +112,14 @@ class CustomNavigationBarState extends State<CustomNavigationBar> {
       displayDropdowns[index] = active;
       navigationActions[index].isActive = active;
     });
+  }
+}
+
+void onTapAction(BuildContext context, CustomAction action) {
+  if (action.link != null) {
+    html.window.open(action.link ?? "", "new tab");
+  } else if (action.routeName != null &&
+      ModalRoute.of(context)?.settings.name != action.routeName) {
+    Navigator.pushNamed(context, action.routeName ?? "/");
   }
 }
