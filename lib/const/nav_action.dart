@@ -70,11 +70,13 @@ List<CustomAction> navigationActions = [
       DropdownOption(title: "twitter", link: "https://twitter.com/heyoitsbrao"),
       DropdownOption(
           title: "tiktok", link: "https://www.tiktok.com/@delilahbrao?lang=en"),
-      DropdownOption(title: "facebook", link: ""),
+      DropdownOption(
+          title: "facebook", link: "https://www.facebook.com/delilahbrao/"),
       DropdownOption(
           title: "youtube",
           link: "https://www.youtube.com/channel/UCiK1upHNiNAknsnjniVY5BA"),
-      DropdownOption(title: "twitch", link: ""),
+      DropdownOption(
+          title: "twitch", link: "https://www.twitch.tv/delilahbrao"),
     ],
   ),
   CustomAction(

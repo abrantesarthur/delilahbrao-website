@@ -1,10 +1,13 @@
 import 'package:delilahbrao/const/footer_icons.dart';
+import 'package:delilahbrao/style.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 
 import 'package:flutter_svg/svg.dart';
 
 class Footer extends StatefulWidget {
+  const Footer({Key? key}) : super(key: key);
+
   @override
   _FooterState createState() => _FooterState();
 }
@@ -25,7 +28,7 @@ class _FooterState extends State<Footer> {
             FooterIcon icon = e.value;
             int index = e.key;
             return Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
+              padding: getFooterPadding(screenWidth),
               child: InkWell(
                 onTap: () => html.window.open(icon.link, "new tab"),
                 onHover: (v) => setState(() {
@@ -33,7 +36,7 @@ class _FooterState extends State<Footer> {
                 }),
                 child: SvgPicture.asset(
                   icon.isActive ? icon.activePath : icon.path,
-                  width: 25,
+                  width: screenWidth < 400 ? 20 : 25,
                 ),
               ),
             );

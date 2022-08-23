@@ -74,26 +74,25 @@ class HomePageState extends State<HomePage>
   }
 
   Widget mobileView() {
-    return Padding(
-      padding: EdgeInsets.only(
-        top: screenWidth * 0.05,
-        left: screenWidth * 0.05,
-        right: screenWidth * 0.05,
-      ),
-      child: SizedBox(
-        width: screenWidth,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            IconButton(
+    return SizedBox(
+      width: screenWidth,
+      child: Stack(
+        children: [
+          Positioned(
+            top: 20,
+            right: 20,
+            child: IconButton(
               icon: const Icon(Icons.menu_rounded),
               iconSize: screenWidth * 0.05,
               onPressed: () => scaffoldKey.currentState?.openEndDrawer(),
               color: Colors.white,
-            )
-          ],
-        ),
+            ),
+          ),
+          Positioned(
+            bottom: 20,
+            child: Footer(),
+          ),
+        ],
       ),
     );
   }

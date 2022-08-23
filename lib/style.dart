@@ -21,3 +21,10 @@ EdgeInsets getMobileOptionPadding() {
     bottom: _mobileActionPadding,
   );
 }
+
+EdgeInsets getFooterPadding(double screenWidth) {
+  return EdgeInsets.only(
+    left: screenWidth < 400 ? 5 : 10,
+    right: screenWidth < 400 ? 5 : 10,
+  );
+}
