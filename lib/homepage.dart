@@ -33,7 +33,7 @@ class HomePageState extends State<HomePage>
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("images/background.jpg"),
+            image: AssetImage("images/background-desktop.jpg"),
             fit: BoxFit.cover,
           ),
         ),

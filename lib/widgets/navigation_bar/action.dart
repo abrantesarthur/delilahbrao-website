@@ -44,7 +44,9 @@ class NavigationBarAction extends StatelessWidget {
                         Icon(
                           rightIcon,
                           size: 15,
-                          color: action.isActive ? Colors.red : Colors.white,
+                          color: action.isActive
+                              ? Colors.purple[300]
+                              : Colors.white,
                         ),
                       ],
                     )
@@ -58,7 +60,7 @@ class NavigationBarAction extends StatelessWidget {
 
   TextStyle getActionTextStyle() {
     return TextStyle(
-      color: action.isActive ? Colors.red : Colors.white,
+      color: action.isActive ? Colors.purple[400] : Colors.white,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     );
