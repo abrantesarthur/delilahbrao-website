@@ -61,10 +61,9 @@ class HomePageState extends State<HomePage>
       width: screenWidth,
       height: screenHeight,
       child: Stack(
-        children: [
-          // TODO: extract this into a Footer or Icons component
+        children: const [
           Positioned(bottom: 20, child: Footer()),
-          const Positioned(
+          Positioned(
             top: 80,
             child: CustomNavigationBar(),
           ),
@@ -83,12 +82,12 @@ class HomePageState extends State<HomePage>
             right: 20,
             child: IconButton(
               icon: const Icon(Icons.menu_rounded),
-              iconSize: screenWidth * 0.05,
+              iconSize: screenWidth < 400 ? 25 : 30,
               onPressed: () => scaffoldKey.currentState?.openEndDrawer(),
               color: Colors.white,
             ),
           ),
-          Positioned(
+          const Positioned(
             bottom: 20,
             child: Footer(),
           ),

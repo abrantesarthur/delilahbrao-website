@@ -1,13 +1,15 @@
 import 'package:delilahbrao/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() {
-  runApp(MyWebsite());
+  setPathUrlStrategy();
+  runApp(const MyWebsite());
 }
 
 // ignore: must_be_immutable
 class MyWebsite extends StatelessWidget {
-  MyWebsite({Key? key}) : super(key: key);
+  const MyWebsite({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
