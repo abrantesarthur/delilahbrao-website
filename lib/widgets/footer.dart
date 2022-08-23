@@ -36,7 +36,7 @@ class _FooterState extends State<Footer> {
                 }),
                 child: SvgPicture.asset(
                   icon.isActive ? icon.activePath : icon.path,
-                  width: screenWidth < 400 ? 20 : 25,
+                  width: 25,
                 ),
               ),
             );
