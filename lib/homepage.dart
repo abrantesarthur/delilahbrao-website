@@ -30,27 +30,30 @@ class HomePageState extends State<HomePage>
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
     bottomPadding = 0.01 * screenHeight;
+
     return Scaffold(
-      endDrawer: CustomDrawer(),
+      endDrawer: const CustomDrawer(),
       key: scaffoldKey,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("images/background-desktop.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: LayoutBuilder(
-          builder: (
-            BuildContext context,
-            BoxConstraints viewPortConstraints,
-          ) {
-            if (viewPortConstraints.maxWidth > 700) {
-              return desktopView();
-            }
-            return mobileView();
-          },
-        ),
+      body: LayoutBuilder(
+        builder: (
+          BuildContext context,
+          BoxConstraints viewPortConstraints,
+        ) {
+          final showMobile = viewPortConstraints.maxWidth < 700;
+          return Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  "images/background-" +
+                      (showMobile ? "mobile" : "desktop") +
+                      ".jpg",
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: showMobile ? mobileView() : desktopView(),
+          );
+        },
       ),
     );
   }
