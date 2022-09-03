@@ -1,4 +1,5 @@
 import 'package:delilahbrao/homepage.dart';
+import 'package:delilahbrao/newsletter.dart';
 
 class DropdownOption {
   final String title;
@@ -85,6 +86,7 @@ List<CustomAction> navigationActions = [
   ),
   CustomAction(
     "NEWSLETTER",
+    routeName: NewsletterPage.routeName,
     dropdownOptions: [],
   ),
 ];

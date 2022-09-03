@@ -1,4 +1,5 @@
 import 'package:delilahbrao/homepage.dart';
+import 'package:delilahbrao/newsletter.dart';
 import 'package:flutter/material.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -13,10 +14,13 @@ class MyWebsite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: "Delilah Brao",
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      routes: {
+        NewsletterPage.routeName: (context) => NewsletterPage(),
+      },
+      home: const HomePage(),
     );
   }
 }
