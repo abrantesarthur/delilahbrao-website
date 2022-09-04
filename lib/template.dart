@@ -44,21 +44,22 @@ class TemplateState extends State<Template>
         ) {
           final showMobile = viewPortConstraints.maxWidth < 700;
           return Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "images/background-" +
-                        (showMobile ? "mobile" : "desktop") +
-                        ".jpg",
-                  ),
-                  fit: BoxFit.cover,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  "images/background-" +
+                      (showMobile ? "mobile" : "desktop") +
+                      ".jpg",
                 ),
+                fit: BoxFit.cover,
               ),
-              child: Container(
-                color:
-                    Colors.black.withOpacity(widget.darkBackground ? 0.8 : 0.0),
-                child: showMobile ? mobileView() : desktopView(),
-              ));
+            ),
+            child: Container(
+              color:
+                  Colors.black.withOpacity(widget.darkBackground ? 0.8 : 0.0),
+              child: showMobile ? mobileView() : desktopView(),
+            ),
+          );
         },
       ),
     );
@@ -78,7 +79,9 @@ class TemplateState extends State<Template>
             bottom: footerOffset + 30,
             left: 0,
             right: 0,
-            child: widget.desktopView ?? Container(),
+            child: SingleChildScrollView(
+              child: widget.desktopView ?? Container(),
+            ),
           ),
           const Positioned(bottom: footerOffset, child: Footer()),
           const Positioned(
@@ -103,7 +106,9 @@ class TemplateState extends State<Template>
             bottom: footerOffset + 30,
             left: 0,
             right: 0,
-            child: widget.desktopView ?? Container(),
+            child: SingleChildScrollView(
+              child: widget.mobileView ?? Container(),
+            ),
           ),
           Positioned(
             top: navIconOffset,

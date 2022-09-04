@@ -6,15 +6,12 @@ class CustomInput extends StatelessWidget {
   final VoidCallback? onTapCallback;
   final String? hintText;
   final Color? hintColor;
-  final IconData? iconData;
   final Color? iconDataColor;
-  final IconData? endIcon;
   final void Function(String)? onSubmittedCallback;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
   final double? width;
   final TextInputType? keyboardType;
-  final VoidCallback? endIconOnTapCallback;
   final bool? obscureText;
   final bool? autoFocus;
   final FocusNode? focusNode;
@@ -27,6 +24,7 @@ class CustomInput extends StatelessWidget {
   final Color? fontColor;
   final bool? hasBorders;
   final CrossAxisAlignment? crossAxisAlignment;
+  final double? height;
 
   const CustomInput({
     Key? key,
@@ -34,16 +32,13 @@ class CustomInput extends StatelessWidget {
     this.enabled,
     this.hintText,
     this.hintColor,
-    this.iconData,
     this.iconDataColor,
-    this.endIcon,
     this.onTapCallback,
     this.onSubmittedCallback,
     this.inputFormatters,
     this.controller,
     this.width,
     this.keyboardType,
-    this.endIconOnTapCallback,
     this.obscureText,
     this.autoFocus,
     this.focusNode,
@@ -52,8 +47,9 @@ class CustomInput extends StatelessWidget {
     this.titleStyle,
     this.backgroundColor,
     this.fontColor,
-    this.hasBorders,
+    this.hasBorders = false,
     this.crossAxisAlignment,
+    this.height,
   }) : super(key: key);
 
   @override
@@ -66,9 +62,10 @@ class CustomInput extends StatelessWidget {
             ? Text(
                 title ?? "",
                 style: titleStyle ??
-                    TextStyle(
+                    const TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.white,
+                      fontSize: 16,
                     ),
               )
             : Container(),
@@ -80,21 +77,13 @@ class CustomInput extends StatelessWidget {
                 : Border.all(color: Colors.black, width: 0.5),
             color: backgroundColor ?? Colors.white,
           ),
-          height: 50,
+          height: height ?? 50,
           width: width,
           child: Row(
             children: [
-              iconData != null
-                  ? Padding(
-                      padding: EdgeInsets.only(left: screenWidth / 20),
-                      child: Icon(
-                        iconData,
-                        color: iconDataColor,
-                      ),
-                    )
-                  : Container(),
               Expanded(
                 child: TextField(
+                  textCapitalization: TextCapitalization.words,
                   textAlign: crossAxisAlignment != null &&
                           crossAxisAlignment == CrossAxisAlignment.end
                       ? TextAlign.end
@@ -114,34 +103,26 @@ class CustomInput extends StatelessWidget {
                   ),
                   obscureText: obscureText ?? false,
                   decoration: InputDecoration(
-                      hintText: hintText,
-                      hintStyle: TextStyle(
-                        fontSize: fontSize ?? 18,
-                        color: hintColor ??
-                            (onTapCallback != null
-                                ? Colors.purple[400]
-                                : Colors.black.withOpacity(0.5)),
-                      ),
-                      border: InputBorder.none,
-                      isDense: true,
-                      contentPadding: EdgeInsets.only(
-                        left: screenWidth / 20,
-                        right: screenWidth / 20,
-                      )),
+                    filled: true,
+                    hintText: hintText,
+                    hintStyle: TextStyle(
+                      fontSize: fontSize ?? 18,
+                      color: hintColor ??
+                          (onTapCallback != null
+                              ? Colors.purple[400]
+                              : Colors.black.withOpacity(0.5)),
+                    ),
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                      top: 5,
+                      bottom: 5,
+                    ),
+                  ),
                 ),
               ),
-              endIcon != null
-                  ? Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: GestureDetector(
-                        onTap: endIconOnTapCallback ?? () {},
-                        child: Icon(
-                          endIcon,
-                          color: Colors.black.withOpacity(0.5),
-                        ),
-                      ),
-                    )
-                  : Container(),
             ],
           ),
         ),
