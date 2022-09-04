@@ -20,32 +20,17 @@ class _NewsletterPageState extends State<NewsletterPage> {
   late TextEditingController lastNameTextEditingController;
   late bool buttonActive;
   late double screenWidth;
-  late String warningMessage;
 
   @override
   void initState() {
     super.initState();
-    warningMessage = "";
     buttonActive = false;
     emailTextEditingController = TextEditingController();
     nameTextEditingController = TextEditingController();
     lastNameTextEditingController = TextEditingController();
-
     emailTextEditingController.addListener(controllersListener);
     nameTextEditingController.addListener(controllersListener);
     lastNameTextEditingController.addListener(controllersListener);
-  }
-
-  void controllersListener() {
-    String email = emailTextEditingController.text;
-    String name = nameTextEditingController.text;
-    String lastName = lastNameTextEditingController.text;
-    setState(() {
-      buttonActive = email.isNotEmpty &&
-          email.isValid() &&
-          name.isNotEmpty &&
-          lastName.isNotEmpty;
-    });
   }
 
   @override
@@ -127,27 +112,12 @@ class _NewsletterPageState extends State<NewsletterPage> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  warningMessage.isNotEmpty
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              "this is gonna be the message",
-                              style: TextStyle(
-                                color: Colors.red,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 20),
-                          ],
-                        )
-                      : Container(),
                   CustomButton(
                     textData: "Submit",
                     width: calculateFormWidth() / 2,
                     onTapCallBack: buttonActive ? () {} : () {},
                     buttonColor:
-                        buttonActive ? Colors.purple[400] : Colors.grey,
+                        buttonActive ? Colors.purple[200] : Colors.grey,
                   )
                 ],
               ),
@@ -170,6 +140,18 @@ class _NewsletterPageState extends State<NewsletterPage> {
         ],
       ),
     );
+  }
+
+  void controllersListener() {
+    String email = emailTextEditingController.text;
+    String name = nameTextEditingController.text;
+    String lastName = lastNameTextEditingController.text;
+    setState(() {
+      buttonActive = email.isNotEmpty &&
+          email.isValid() &&
+          name.isNotEmpty &&
+          lastName.isNotEmpty;
+    });
   }
 
   double calculateFormWidth() {
