@@ -45,100 +45,89 @@ class _NewsletterPageState extends State<NewsletterPage> {
 
     return Template(
       darkBackground: true,
-      desktopView: Column(
-        children: [
-          const SizedBox(height: 40),
-          const Text(
-            "SIGN UP / COLLABORATE / JUST SAY HI",
-            style: TextStyle(
-              // TODO: make smaller for cell phone
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+      desktopView: buildView(),
+      mobileView: buildView(),
+    );
+  }
+
+  Widget buildView() {
+    return Column(
+      children: [
+        const SizedBox(height: 40),
+        Text(
+          "SIGN UP / COLLABORATE / JUST SAY HI",
+          style: TextStyle(
+            fontSize: calculateTitleFontSize(),
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        const SizedBox(height: 20),
+        // TODO: extract into a form widget
+        SizedBox(
+          width: calculateFormWidth(),
+          child: Form(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomInput(
+                      title: "Name *",
+                      controller: nameTextEditingController,
+                      width: calculateFormWidth() / 2 - 10,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(20),
+                        FilteringTextInputFormatter.allow(
+                            RegExp("[a-zA-Z\\s]")),
+                        FilteringTextInputFormatter.singleLineFormatter,
+                      ],
+                    ),
+                    CustomInput(
+                      title: "Last Name *",
+                      controller: lastNameTextEditingController,
+                      width: calculateFormWidth() / 2 - 10,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(30),
+                        FilteringTextInputFormatter.allow(
+                            RegExp("[a-zA-Z-\\s]")),
+                        FilteringTextInputFormatter.singleLineFormatter,
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                CustomInput(
+                  title: "Email *",
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(60),
+                    FilteringTextInputFormatter.singleLineFormatter,
+                  ],
+                  controller: emailTextEditingController,
+                  hintText: "example@domain.com",
+                ),
+                const SizedBox(height: 20),
+                CustomInput(
+                  title: "Message",
+                  height: 100,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(500),
+                    FilteringTextInputFormatter.singleLineFormatter,
+                  ],
+                ),
+                const SizedBox(height: 30),
+                CustomButton(
+                  textData: "Submit",
+                  width: calculateFormWidth() / 2,
+                  onTapCallBack: buttonActive ? () {} : () {},
+                  buttonColor: buttonActive ? Colors.purple[200] : Colors.grey,
+                )
+              ],
             ),
           ),
-          const SizedBox(height: 20),
-          // TODO: extract into a form widget
-          SizedBox(
-            width: calculateFormWidth(),
-            child: Form(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomInput(
-                        title: "Name *",
-                        controller: nameTextEditingController,
-                        width: calculateFormWidth() / 2 - 10,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(20),
-                          FilteringTextInputFormatter.allow(
-                              RegExp("[a-zA-Z\\s]")),
-                          FilteringTextInputFormatter.singleLineFormatter,
-                        ],
-                      ),
-                      CustomInput(
-                        title: "Last Name *",
-                        controller: lastNameTextEditingController,
-                        width: calculateFormWidth() / 2 - 10,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(30),
-                          FilteringTextInputFormatter.allow(
-                              RegExp("[a-zA-Z-\\s]")),
-                          FilteringTextInputFormatter.singleLineFormatter,
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  CustomInput(
-                    title: "Email *",
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(60),
-                      FilteringTextInputFormatter.singleLineFormatter,
-                    ],
-                    controller: emailTextEditingController,
-                    hintText: "example@domain.com",
-                  ),
-                  const SizedBox(height: 20),
-                  CustomInput(
-                    title: "Message",
-                    height: 100,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(500),
-                      FilteringTextInputFormatter.singleLineFormatter,
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  CustomButton(
-                    textData: "Submit",
-                    width: calculateFormWidth() / 2,
-                    onTapCallBack: buttonActive ? () {} : () {},
-                    buttonColor:
-                        buttonActive ? Colors.purple[200] : Colors.grey,
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-      mobileView: Column(
-        children: [
-          Container(
-            color: Colors.red,
-            width: 50,
-            height: 50,
-          ),
-          Container(
-            color: Colors.blue,
-            width: 50,
-            height: 50,
-          )
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -156,5 +145,13 @@ class _NewsletterPageState extends State<NewsletterPage> {
 
   double calculateFormWidth() {
     return screenWidth < 800 ? 400 : 500;
+  }
+
+  double calculateTitleFontSize() {
+    return screenWidth < 500
+        ? 18
+        : screenWidth < 800
+            ? 20
+            : 25;
   }
 }

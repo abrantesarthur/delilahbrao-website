@@ -18,7 +18,7 @@ class MyWebsite extends StatelessWidget {
       title: "Delilah Brao",
       debugShowCheckedModeBanner: false,
       routes: {
-        NewsletterPage.routeName: (context) => NewsletterPage(),
+        NewsletterPage.routeName: (context) => const NewsletterPage(),
       },
       home: const HomePage(),
     );
