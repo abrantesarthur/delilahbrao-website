@@ -17,6 +17,7 @@ class MyWebsite extends StatelessWidget {
     return MaterialApp(
       title: "Delilah Brao",
       debugShowCheckedModeBanner: false,
+      color: Colors.black,
       routes: {
         NewsletterPage.routeName: (context) => const NewsletterPage(),
       },

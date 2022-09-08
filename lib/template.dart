@@ -79,8 +79,14 @@ class TemplateState extends State<Template>
             bottom: footerOffset + 30,
             left: 0,
             right: 0,
-            child: SingleChildScrollView(
-              child: widget.desktopView ?? Container(),
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 10,
+                right: 10,
+              ),
+              child: SingleChildScrollView(
+                child: widget.desktopView ?? Container(),
+              ),
             ),
           ),
           const Positioned(bottom: footerOffset, child: Footer()),
@@ -106,8 +112,11 @@ class TemplateState extends State<Template>
             bottom: footerOffset + 30,
             left: 0,
             right: 0,
-            child: SingleChildScrollView(
-              child: widget.mobileView ?? Container(),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: SingleChildScrollView(
+                child: widget.mobileView ?? Container(),
+              ),
             ),
           ),
           Positioned(
