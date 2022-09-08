@@ -12,13 +12,13 @@ const mailchimpListId = "1844e08d6f";
 exports.newsletterSignUp = functions.https.onRequest(async (req, res) => {
   // validate body
   if (req.body.email === undefined) {
-    return res.status(400).send(`Request body is missing 'email' field.`);
+    return res.status(400).send("Request body is missing 'email' field.");
   }
   if (req.body.first_name === undefined) {
-    return res.status(400).send(`Request body is missing 'first_name' field.`);
+    return res.status(400).send("Request body is missing 'first_name' field.");
   }
   if (req.body.last_name === undefined) {
-    return res.status(400).send(`Request body is missing 'last_name' field.`);
+    return res.status(400).send("Request body is missing 'last_name' field.");
   }
 
   try {
