@@ -7,7 +7,6 @@ class CustomInput extends StatelessWidget {
   final String? hintText;
   final Color? hintColor;
   final Color? iconDataColor;
-  final void Function(String)? onSubmittedCallback;
   final TextEditingController? controller;
   final List<TextInputFormatter>? inputFormatters;
   final double? width;
@@ -34,7 +33,6 @@ class CustomInput extends StatelessWidget {
     this.hintColor,
     this.iconDataColor,
     this.onTapCallback,
-    this.onSubmittedCallback,
     this.inputFormatters,
     this.controller,
     this.width,
@@ -82,7 +80,7 @@ class CustomInput extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: TextField(
+                child: TextFormField(
                   textCapitalization: TextCapitalization.words,
                   textAlign: crossAxisAlignment != null &&
                           crossAxisAlignment == CrossAxisAlignment.end
@@ -94,7 +92,6 @@ class CustomInput extends StatelessWidget {
                   autofocus: autoFocus ?? false,
                   focusNode: focusNode,
                   inputFormatters: inputFormatters,
-                  onSubmitted: onSubmittedCallback,
                   controller: controller,
                   keyboardType: keyboardType,
                   style: TextStyle(
