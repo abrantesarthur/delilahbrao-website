@@ -116,9 +116,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
           'last_name': lname,
         }));
 
-    debugPrint(r.statusCode.toString());
-    debugPrint(r.body);
-
     setState(() {
       isLoading = false;
       formSubmitted = true;

@@ -2,7 +2,6 @@ import {https, Response} from "firebase-functions";
 import admin = require("firebase-admin");
 import cors = require("cors");
 import axios from "axios";
-
 admin.initializeApp();
 
 const corsHandler = cors({origin: true});
@@ -20,7 +19,7 @@ exports.newsletterSubscribe = https.onRequest((req, res: Response) : void => {
     if (fname === undefined) {
       return res.status(400).send("missing 'first_name' in request body.");
     }
-    if (fname === undefined) {
+    if (lname === undefined) {
       return res.status(400).send("missing 'last_name' in request body.");
     }
 
