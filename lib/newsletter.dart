@@ -69,7 +69,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
           ),
         ),
         SizedBox(height: formSubmitted ? 40 : 20),
-        // TODO: extract into a form widget
         formSubmitted
             ? const Text(
                 "We will be in touch.",
