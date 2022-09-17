@@ -95,12 +95,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
 
   // onSubmit sends a request to mailchimp to add the user to the newsletter
   void subscribeToNewsletter() async {
-    String apiServer = "us9";
-    String listID = "1844e08d6f";
-    // TODO: add to env file
-    String apiKey = "f12567f579ab4f258e9064ed6f2fa982-us9";
-    String credentials = base64Encode(utf8.encode("key:$apiKey"));
-
     String fname = nameTextEditingController.text;
     String lname = lastNameTextEditingController.text;
     String emailAddress = emailTextEditingController.text;
@@ -110,19 +104,21 @@ class _NewsletterPageState extends State<NewsletterPage> {
     });
 
     // subscribe user to newsletter
-    await http.post(
+    final r = await http.post(
         Uri.parse(
-            "https://$apiServer.api.mailchimp.com/3.0/lists/$listID/members"),
+            "https://us-central1-delilahbrao-de9d6.cloudfunctions.net/newsletterSubscribe"),
         headers: <String, String>{
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic $credentials',
+          'Content-Type': 'application/json; charset=UTF-8',
           'Access-Control-Allow-Origin': '*',
         },
         body: jsonEncode({
-          'email_address': emailAddress,
-          'status': 'subscribed',
-          'merge_fields': {'FNAME': fname, 'LNAME': lname}
+          'email': emailAddress,
+          'first_name': fname,
+          'last_name': lname,
         }));
+
+    debugPrint(r.statusCode.toString());
+    debugPrint(r.body);
 
     setState(() {
       isLoading = false;
