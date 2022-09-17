@@ -11,7 +11,6 @@ class CustomForm extends StatelessWidget {
     required this.nameTextEditingController,
     required this.lastNameTextEditingController,
     required this.emailTextEditingController,
-    required this.messageTextEditingController,
     required this.onTapCallBack,
     required this.isLoading,
     this.buttonColor,
@@ -22,7 +21,6 @@ class CustomForm extends StatelessWidget {
   final TextEditingController emailTextEditingController;
   final TextEditingController nameTextEditingController;
   final TextEditingController lastNameTextEditingController;
-  final TextEditingController messageTextEditingController;
   final VoidCallback onTapCallBack;
   final Color? buttonColor;
   final bool isLoading;
@@ -70,16 +68,6 @@ class CustomForm extends StatelessWidget {
               ],
               controller: emailTextEditingController,
               hintText: "example@domain.com",
-            ),
-            const SizedBox(height: 20),
-            CustomInput(
-              title: "Message",
-              height: 100,
-              controller: messageTextEditingController,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(500),
-                FilteringTextInputFormatter.singleLineFormatter,
-              ],
             ),
             const SizedBox(height: 30),
             CustomButton(

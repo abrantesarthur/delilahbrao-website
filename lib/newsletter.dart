@@ -1,13 +1,9 @@
 import 'dart:convert';
 
 import 'package:delilahbrao/widgets/customForm.dart';
-import 'package:delilahbrao/widgets/customInput.dart';
 import 'package:delilahbrao/template.dart';
 import 'package:delilahbrao/utils.dart';
-import 'package:delilahbrao/widgets/customButton.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:http/http.dart' as http;
 
 class NewsletterPage extends StatefulWidget {
@@ -23,7 +19,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
   late TextEditingController emailTextEditingController;
   late TextEditingController nameTextEditingController;
   late TextEditingController lastNameTextEditingController;
-  late TextEditingController messageTextEditingController;
   late bool buttonActive;
   late bool isLoading;
   late bool formSubmitted;
@@ -39,7 +34,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
     emailTextEditingController = TextEditingController();
     nameTextEditingController = TextEditingController();
     lastNameTextEditingController = TextEditingController();
-    messageTextEditingController = TextEditingController();
     emailTextEditingController.addListener(controllersListener);
     nameTextEditingController.addListener(controllersListener);
     lastNameTextEditingController.addListener(controllersListener);
@@ -91,7 +85,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
                 nameTextEditingController: nameTextEditingController,
                 lastNameTextEditingController: lastNameTextEditingController,
                 emailTextEditingController: emailTextEditingController,
-                messageTextEditingController: messageTextEditingController,
                 onTapCallBack: buttonActive ? subscribeToNewsletter : () {},
                 buttonColor: buttonActive ? Colors.purple[200] : Colors.grey,
                 isLoading: isLoading,
@@ -130,27 +123,6 @@ class _NewsletterPageState extends State<NewsletterPage> {
           'status': 'subscribed',
           'merge_fields': {'FNAME': fname, 'LNAME': lname}
         }));
-
-    // if a message was included, send it to Delilah Brao over email
-    String message = messageTextEditingController.text;
-    if (message.isNotEmpty) {
-      final Email email = Email(
-        subject: "New Message From delilahbrao.com",
-        body: 'Hi Mary, this is an automated email from your website.'
-            '\n$fname $lname sent you the following message:'
-            '\n$message'
-            '\nYou can reply by sending an email to $emailAddress'
-            '\nCheers,'
-            '\ndelilahbrao.com',
-        recipients: ['abrantesarthur1997@gmail.com'],
-        isHTML: false,
-      );
-      try {
-        await FlutterEmailSender.send(email);
-      } catch (e) {
-        debugPrint(e.toString());
-      }
-    }
 
     setState(() {
       isLoading = false;
