@@ -61,14 +61,14 @@ class _NewsletterPageState extends State<NewsletterPage> {
       children: [
         const SizedBox(height: 40),
         Text(
-          formSubmitted ? "THANK YOU!" : "SIGN UP / COLLABORATE / JUST SAY HI",
+          formSubmitted ? "THANK YOU!" : "SIGN UP",
           style: TextStyle(
             fontSize: calculateTitleFontSize(),
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
-        SizedBox(height: formSubmitted ? 40 : 20),
+        SizedBox(height: formSubmitted ? 80 : 40),
         formSubmitted
             ? const Text(
                 "We will be in touch.",
