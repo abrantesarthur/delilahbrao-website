@@ -1,3 +1,4 @@
+import 'package:delilahbrao/const/links.dart';
 import 'package:delilahbrao/homepage.dart';
 import 'package:delilahbrao/newsletter.dart';
 
@@ -37,47 +38,27 @@ List<CustomAction> navigationActions = [
   ),
   CustomAction(
     "LISTEN",
-    link:
-        "https://open.spotify.com/artist/5dWRkpyqnoYDNouN02NDdk?si=udvdW8bURFSc8vChUrGOhw&nd=1",
+    link: spotifyLink,
     dropdownOptions: [
-      DropdownOption(
-          title: "spotify",
-          link:
-              "https://open.spotify.com/artist/5dWRkpyqnoYDNouN02NDdk?si=udvdW8bURFSc8vChUrGOhw&nd=1"),
-      DropdownOption(
-          title: "apple music",
-          link:
-              "https://music.apple.com/us/artist/delilah-brao/1502059102?mt=1&app=music&at=10luuP"),
-      DropdownOption(
-          title: "soundcloud", link: "https://soundcloud.com/delilahbrao"),
-      DropdownOption(
-          title: "amazon music",
-          link: "https://music.amazon.com/artists/B085NMYGF3/delilah-brao"),
-      DropdownOption(
-          title: "bandcamp", link: "https://delilahbrao.bandcamp.com"),
-      DropdownOption(
-          title: "tidal", link: "https://tidal.com/browse/artist/11907136"),
-      DropdownOption(
-          title: "deezer", link: "https://www.deezer.com/us/artist/50283052"),
+      DropdownOption(title: "spotify", link: spotifyLink),
+      DropdownOption(title: "apple music", link: appleMusicLink),
+      DropdownOption(title: "soundcloud", link: soundcloudLink),
+      DropdownOption(title: "amazon music", link: amazonMusicLink),
+      DropdownOption(title: "bandcamp", link: bandcampLink),
+      DropdownOption(title: "tidal", link: tidalLink),
+      DropdownOption(title: "deezer", link: deezerLink),
     ],
   ),
   CustomAction(
     "FOLLOW",
-    link: "https://www.instagram.com/delilahbrao/?hl=en",
+    link: instagramLink,
     dropdownOptions: [
-      DropdownOption(
-          title: "instagram",
-          link: "https://www.instagram.com/delilahbrao/?hl=en"),
-      DropdownOption(title: "twitter", link: "https://twitter.com/heyoitsbrao"),
-      DropdownOption(
-          title: "tiktok", link: "https://www.tiktok.com/@delilahbrao?lang=en"),
-      DropdownOption(
-          title: "facebook", link: "https://www.facebook.com/delilahbrao/"),
-      DropdownOption(
-          title: "youtube",
-          link: "https://www.youtube.com/channel/UCiK1upHNiNAknsnjniVY5BA"),
-      DropdownOption(
-          title: "twitch", link: "https://www.twitch.tv/delilahbrao"),
+      DropdownOption(title: "instagram", link: instagramLink),
+      DropdownOption(title: "twitter", link: twitterLink),
+      DropdownOption(title: "tiktok", link: tiktokLink),
+      DropdownOption(title: "facebook", link: facebookLink),
+      DropdownOption(title: "youtube", link: youtubeLink),
+      DropdownOption(title: "twitch", link: twitchLink),
     ],
   ),
   CustomAction(

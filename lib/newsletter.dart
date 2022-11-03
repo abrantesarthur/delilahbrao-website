@@ -57,38 +57,40 @@ class _NewsletterPageState extends State<NewsletterPage> {
   }
 
   Widget buildView() {
-    return Column(
-      children: [
-        const SizedBox(height: 40),
-        Text(
-          formSubmitted ? "THANK YOU!" : "SIGN UP",
-          style: TextStyle(
-            fontSize: calculateTitleFontSize(),
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          const SizedBox(height: 40),
+          Text(
+            formSubmitted ? "THANK YOU!" : "SIGN UP",
+            style: TextStyle(
+              fontSize: calculateTitleFontSize(),
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
-        ),
-        SizedBox(height: formSubmitted ? 80 : 40),
-        formSubmitted
-            ? const Text(
-                "We will be in touch.",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontSize: 16,
+          SizedBox(height: formSubmitted ? 80 : 40),
+          formSubmitted
+              ? const Text(
+                  "We will be in touch.",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                )
+              : CustomForm(
+                  formKey: formKey,
+                  width: calculateFormWidth(),
+                  nameTextEditingController: nameTextEditingController,
+                  lastNameTextEditingController: lastNameTextEditingController,
+                  emailTextEditingController: emailTextEditingController,
+                  onTapCallBack: buttonActive ? subscribeToNewsletter : () {},
+                  buttonColor: buttonActive ? Colors.blue[200] : Colors.grey,
+                  isLoading: isLoading,
                 ),
-              )
-            : CustomForm(
-                formKey: formKey,
-                width: calculateFormWidth(),
-                nameTextEditingController: nameTextEditingController,
-                lastNameTextEditingController: lastNameTextEditingController,
-                emailTextEditingController: emailTextEditingController,
-                onTapCallBack: buttonActive ? subscribeToNewsletter : () {},
-                buttonColor: buttonActive ? Colors.blue[200] : Colors.grey,
-                isLoading: isLoading,
-              ),
-      ],
+        ],
+      ),
     );
   }
 

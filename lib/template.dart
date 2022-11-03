@@ -82,14 +82,11 @@ class TemplateState extends State<Template>
             left: 0,
             right: 0,
             child: Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                right: 10,
-              ),
-              child: SingleChildScrollView(
-                child: widget.desktopView ?? Container(),
-              ),
-            ),
+                padding: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                ),
+                child: widget.desktopView ?? Container()),
           ),
           const Positioned(bottom: footerOffset, child: Footer()),
           const Positioned(
