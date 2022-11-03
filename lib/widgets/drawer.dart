@@ -40,7 +40,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               displayDropdown[index] ? Icons.close : Icons.add,
                               size: 15,
                               color: navigationActions[index].isActive
-                                  ? Colors.purple[400]
+                                  ? Colors.blue[400]
                                   : Colors.white,
                             )
                           : Container(),

@@ -43,7 +43,7 @@ class NavigationBarOption extends StatelessWidget {
 
   TextStyle getActionTextStyle() {
     return TextStyle(
-      color: option.isActive ? Colors.purple[400] : Colors.white,
+      color: option.isActive ? Colors.blue[600] : Colors.white,
       fontWeight: FontWeight.w500,
       fontSize: 14,
     );

@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius ?? 100.0),
-          color: buttonColor ?? Colors.purple[400],
+          color: buttonColor ?? Colors.blue[400],
           boxShadow: buttonColor != Colors.black.withOpacity(0.5)
               ? [
                   BoxShadow(

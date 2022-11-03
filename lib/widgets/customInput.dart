@@ -106,7 +106,7 @@ class CustomInput extends StatelessWidget {
                       fontSize: fontSize ?? 18,
                       color: hintColor ??
                           (onTapCallback != null
-                              ? Colors.purple[400]
+                              ? Colors.blue[400]
                               : Colors.black.withOpacity(0.5)),
                     ),
                     border: InputBorder.none,

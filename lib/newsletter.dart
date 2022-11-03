@@ -85,7 +85,7 @@ class _NewsletterPageState extends State<NewsletterPage> {
                 lastNameTextEditingController: lastNameTextEditingController,
                 emailTextEditingController: emailTextEditingController,
                 onTapCallBack: buttonActive ? subscribeToNewsletter : () {},
-                buttonColor: buttonActive ? Colors.purple[200] : Colors.grey,
+                buttonColor: buttonActive ? Colors.blue[200] : Colors.grey,
                 isLoading: isLoading,
               ),
       ],

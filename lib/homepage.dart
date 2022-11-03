@@ -6,6 +6,9 @@ class HomePage extends StatelessWidget {
   static String routeName = "/";
   @override
   Widget build(BuildContext context) {
-    return Template();
+    return Template(
+      darkBackground: true,
+      backgroundOpacity: 0.35,
+    );
   }
 }

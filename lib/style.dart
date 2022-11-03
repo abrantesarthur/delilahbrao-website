@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 TextStyle getActionTextStyle(bool isActive) {
   return TextStyle(
-    color: isActive ? Colors.purple[400] : Colors.white,
+    color: isActive ? Colors.blue[900] : Colors.white,
     fontWeight: FontWeight.w500,
     fontSize: 14,
   );

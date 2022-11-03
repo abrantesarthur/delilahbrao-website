@@ -45,9 +45,8 @@ class NavigationBarAction extends StatelessWidget {
                         Icon(
                           rightIcon,
                           size: 15,
-                          color: action.isActive
-                              ? Colors.purple[300]
-                              : Colors.white,
+                          color:
+                              action.isActive ? Colors.blue[900] : Colors.white,
                         ),
                       ],
                     )

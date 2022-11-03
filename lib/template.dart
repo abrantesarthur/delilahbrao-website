@@ -10,10 +10,12 @@ class Template extends StatefulWidget {
     this.desktopView,
     this.mobileView,
     this.darkBackground = false,
+    this.backgroundOpacity = 0.8,
   }) : super(key: key);
 
   final Widget? desktopView;
   final Widget? mobileView;
+  double backgroundOpacity;
   bool darkBackground;
 
   @override
@@ -55,8 +57,8 @@ class TemplateState extends State<Template>
               ),
             ),
             child: Container(
-              color:
-                  Colors.black.withOpacity(widget.darkBackground ? 0.8 : 0.0),
+              color: Colors.black.withOpacity(
+                  widget.darkBackground ? widget.backgroundOpacity : 0.0),
               child: showMobile ? mobileView() : desktopView(),
             ),
           );
