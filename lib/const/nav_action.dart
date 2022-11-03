@@ -1,6 +1,7 @@
 import 'package:delilahbrao/const/links.dart';
 import 'package:delilahbrao/homepage.dart';
 import 'package:delilahbrao/newsletter.dart';
+import 'package:delilahbrao/profile.dart';
 
 class DropdownOption {
   final String title;
@@ -63,6 +64,7 @@ List<CustomAction> navigationActions = [
   ),
   CustomAction(
     "ABOUT",
+    routeName: ProfilePage.routeName,
     dropdownOptions: [],
   ),
   CustomAction(

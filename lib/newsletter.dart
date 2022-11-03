@@ -71,14 +71,7 @@ class _NewsletterPageState extends State<NewsletterPage> {
           ),
           SizedBox(height: formSubmitted ? 80 : 40),
           formSubmitted
-              ? const Text(
-                  "We will be in touch.",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                )
+              ? Container()
               : CustomForm(
                   formKey: formKey,
                   width: calculateFormWidth(),

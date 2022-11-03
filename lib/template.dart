@@ -78,7 +78,7 @@ class TemplateState extends State<Template>
         children: [
           Positioned(
             top: navBarOffset + 25,
-            bottom: footerOffset + 30,
+            bottom: footerOffset + 50,
             left: 0,
             right: 0,
             child: Padding(
