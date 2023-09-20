@@ -46,12 +46,10 @@ class TemplateState extends State<Template>
         ) {
           final showMobile = viewPortConstraints.maxWidth < 700;
           return Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  "images/background-" +
-                      (showMobile ? "mobile" : "desktop") +
-                      ".jpg",
+                  "images/background.jpg",
                 ),
                 fit: BoxFit.cover,
               ),
